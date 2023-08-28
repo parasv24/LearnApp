@@ -1,0 +1,41 @@
+<%
+  enrolled = @batch.batches_users.pluck(:user_id).include?(current_user.id)
+  pending = @batch.batches_users.find_by_user_id(current_user.id)&.request_status == 0 %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @batch.name %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @batch.course.name %>
+</p>
+
+<% if enrolled %>
+  <% if pending %>
+    <p> Enrollment request pending approval</p>
+  <% else %>
+    <p> You are already enrolled </p>
+  <% end %>
+<% else %>
+  <p><%= link_to "Send enrollment request.", batches_users_create_path(batch_id: @batch.id, user_id: current_user.id, request_status: 0) %></p>
+<% end %>
+
+<p>
+<strong> Enrolled students </strong>
+
+<% @batch.enrolled_students.each do |student| %>
+  <p><%= link_to student.name, student %></p>
+<% end %>
+</p>
+
+<p>
+<strong> Pending Enrollment  students </strong>
+<% @batch.pending_approval_students.each do |student| %>
+  <p><%= link_to student.name, student %>   <%= link_to 'Approve', batches_users_update_path(batch_id: @batch.id, user_id: current_user.id, request_status: 1) %></p>
+<% end %>
+</p>
+<%= link_to 'Edit', edit_batch_path(@batch) %> |
+<%= link_to 'Back', batches_path %>

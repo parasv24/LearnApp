@@ -1,0 +1,26 @@
+<%= form_with(model: batch) do |form| %>
+  <% if batch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(batch.errors.count, "error") %> prohibited this batch from being saved:</h2>
+
+      <ul>
+        <% batch.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    Batch in course <%= @selected_course.name %> and school <%= @selected_course.school.name %>
+  </div>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.hidden_field :course_id, value: @selected_course.id %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

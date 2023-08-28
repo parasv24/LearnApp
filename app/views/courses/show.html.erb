@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= link_to @course.school.name, school_path(@course.school_id) %>
+</p>
+
+<% @course.batches.each do |batch| %>
+  <p><%= link_to batch.name, batch %></p>
+<% end %>
+<%= link_to 'Add Batch', new_batch_path(course_id: @course.id) %>
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>

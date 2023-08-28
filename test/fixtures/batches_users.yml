@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  batch: one
+  user: one
+  request_status: 1
+
+two:
+  batch: two
+  user: two
+  request_status: 1

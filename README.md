@@ -7,7 +7,8 @@ Things you may want to cover:
 
 * Ruby version
 2.6.6
-Rest all the versions can be found ot through the gemfile
+
+Rest all the versions can be found out through the gemfile
 * Database creation
 If you want you can modify the database.yml and use any db of your preference and run all the migrations
 
@@ -26,6 +27,7 @@ Set up the database:
 
 * Database initialization
 You need to create users through console currently and probably you can fill in the value in the below piece and run 
-and create the users
+and create the users 
+
   User.create!(name: <>, role: <>, email: <>, password: <>, password_confirmation: <>)
 After the user are created you can sign in and browse the application
